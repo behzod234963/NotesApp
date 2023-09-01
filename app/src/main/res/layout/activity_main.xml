@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/white">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tbToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#009688">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notes"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/amidone_grotesk"
+                android:layout_gravity="center"/>
+            <ImageView
+                android:id="@+id/ivClear"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/pic_clear"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="60dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:drawableLeft="@drawable/pic_add"
+        android:layout_gravity="bottom|end"
+        android:drawableTint="@color/white"
+        android:background="@drawable/bg_button_done"
+        android:paddingLeft="0dp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:backgroundTint="@null" />
+    <RelativeLayout
+        android:id="@+id/rlText"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/frText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.example.notesapp.Fragments.Text"
+            tools:layout="@layout/fragment_text" />
+    </RelativeLayout>
+
+</FrameLayout>
