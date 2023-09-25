@@ -39,4 +39,13 @@ class MainRepository {
 
     }
 
+    fun deleteAllNotes(){
+
+        val notesReference=fireBaseReference.child("notes")
+
+        notesReference.removeValue().
+                addOnSuccessListener {  }
+            .addOnFailureListener {  }
+    }
+
 }

@@ -7,10 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.notesapp.R
 import com.example.notesapp.adapters.MainAdapter
 import com.example.notesapp.databinding.FragmentMainBinding
 import com.example.notesapp.models.NotesModel
+import com.example.notesapp.viewModel.fragmentMain.MainRepository
 import com.example.notesapp.viewModel.fragmentMain.MainViewModel
 
 class Main : Fragment() {
@@ -19,6 +22,8 @@ class Main : Fragment() {
     lateinit var notes: ArrayList<NotesModel>
     lateinit var mainViewModel: MainViewModel
     lateinit var mainAdapter: MainAdapter
+    lateinit var mainRepository: MainRepository
+    lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +32,11 @@ class Main : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentMainBinding.inflate(layoutInflater, container, false)
         return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         initViews()
 
@@ -43,12 +53,36 @@ class Main : Fragment() {
             inVisible(lavBtnAddClick)
             initViewModel()
             setupObserve()
+            navController = NavController(requireContext())
             mainAdapter = MainAdapter()
             notes = ArrayList()
             rvMain.adapter = mainAdapter
             mainAdapter.submitList(notes)
 
+            lavBtnAddLoop.setOnClickListener { onBtnAddListener() }
+            lavBtnDeleteMain.setOnClickListener { onBtnDeleteListener() }
+
         }
+
+    }
+
+
+    //    Listener for button delete all
+    private fun onBtnDeleteListener() {
+
+        binding.lavBtnDeleteMain.playAnimation()
+        mainRepository.deleteAllNotes()
+
+    }
+
+
+    //    Listener for button add
+    private fun onBtnAddListener() {
+
+        inVisible(binding.lavBtnAddLoop)
+        isVisibile(binding.lavBtnAddClick)
+        findNavController().navigate(R.id.action_main_to_addNote)
+        navController.popBackStack()
 
     }
 

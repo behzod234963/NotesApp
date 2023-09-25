@@ -1,14 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.AddNote">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.AddNote"
+    android:orientation="vertical"
+    android:background="@color/mixblack">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/mixblack">
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavBtnBack_add"
+                android:layout_width="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_height="match_parent"
+                app:lottie_fileName="backbutton.json"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Notes"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="25dp"
+                android:layout_marginEnd="30dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/amidone_grotesk"/>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/lavBtnSave_add"
+                android:layout_width="130dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                app:lottie_fileName="btnSave.json"/>
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_weight="3"
+        android:layout_margin="10dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="#CDFFFFFF"
+            android:gravity="center_vertical"
+            android:inputType="textMultiLine"
+            android:textSize="25sp"
+            android:hint="Title"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-</FrameLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="10dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Text"
+            android:textSize="18sp"
+            android:inputType="textMultiLine"
+            android:textColor="@color/white"
+            android:fontFamily="@font/amidone_grotesk"
+            android:textColorHint="@color/white"
+            android:gravity="start"/>
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>
